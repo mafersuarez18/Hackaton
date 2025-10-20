@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, User, Bot, LogOut, MessageSquare, Calendar, FileText, CreditCard, Clock, ChevronDown, Mail, Briefcase, Building2 } from 'lucide-react';
+import logoBNC from './images/Banco_Nacional_de_Credito.png';
 
 interface Message {
   id: string;
@@ -171,8 +172,13 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform">
-                <span className="text-white font-bold text-2xl">BNC</span>
+              {/* Contenedor de la imagen (reemplaza a 'BNC') */}
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform overflow-hidden">
+                <img 
+                  src={logoBNC} 
+                  alt="Logo Banco Nacional de Crédito" 
+                  className="w-full h-full object-cover" 
+                />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-white tracking-wide">Banco Nacional de Crédito</h1>
