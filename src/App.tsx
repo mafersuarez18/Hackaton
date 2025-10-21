@@ -52,7 +52,7 @@ function App() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE'; // Configurar aquí la URL del Webhook de N8N
-  const USER_ID = '12345678'; // ID del empleado
+  const USER_ID = '12345678'; // ID del empleado hardcodeado
   const USER_NAME = 'Juan Pérez';
 
   const scrollToBottom = () => {
@@ -136,7 +136,8 @@ function App() {
       'prestamo': 'Quiero solicitar un préstamo personal',
       'permiso-reposo': 'Necesito solicitar un permiso y/o reposo',
       'ari': 'Quiero descargar mi AR-I',
-      'arc': 'Quiero descargar mi ARC'
+      'arc': 'Quiero descargar mi ARC',
+      'recibos': 'Quiero consultar mis recibos de pago'
     };
     sendMessage(messages[action]);
   };
@@ -341,6 +342,15 @@ function App() {
                   >
                     <Download className="w-5 h-5 text-teal-600 group-hover:text-teal-700 flex-shrink-0" />
                     <span className="font-medium text-sm text-left">Descargar ARC</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleQuickAccess('recibos')}
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-orange-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                  >
+                    <CreditCard className="w-5 h-5 text-orange-600 group-hover:text-orange-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Recibos de Pago</span>
                   </button>
                 </li>
               </ul>
