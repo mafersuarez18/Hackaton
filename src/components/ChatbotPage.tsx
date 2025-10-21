@@ -22,12 +22,16 @@ interface ChatbotPageProps {
 }
 
 export default function ChatbotPage({ onClose }: ChatbotPageProps) {
+  const USER_NAME = 'VeruPérez';
+  const USER_ID = '12345678';
+  const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       type: 'bot',
-      content: 'Hola Juan, soy ARHI, tu asistente virtual del BNC. ¿En qué puedo ayudarte hoy?',
+      content: `Hola ${USER_NAME}, soy tu asistente virtual del BNC. ¿En qué puedo ayudarte hoy?`,
       timestamp: new Date()
+
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
@@ -56,9 +60,7 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const USER_NAME = 'Juan Pérez';
-  const USER_ID = '12345678';
-  const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -141,16 +143,17 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
   };
 
   const startNewChat = () => {
-    setCurrentChatId('current');
-    setMessages([
-      {
-        id: Date.now().toString(),
-        type: 'bot',
-        content: 'Hola Juan, soy tu asistente virtual del BNC. ¿En qué puedo ayudarte hoy?',
-        timestamp: new Date()
-      }
-    ]);
-  };
+  setCurrentChatId('current');
+  setMessages([
+    {
+      id: Date.now().toString(),
+      type: 'bot',
+      content: `Hola ${USER_NAME}, soy tu asistente virtual del BNC. ¿En qué puedo ayudarte hoy?`,
+      timestamp: new Date()
+    }
+  ]);
+};
+
 
   const loadChatHistory = (chatId: string) => {
     const history = chatHistories.find(h => h.id === chatId);
