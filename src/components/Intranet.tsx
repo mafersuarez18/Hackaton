@@ -10,8 +10,8 @@ interface IntranetProps {
 
 export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const USER_NAME = 'Juan Pérez';
-  const USER_ID = '12345678';
+  const USER_NAME = 'Veruzka Alvarez';
+  const USER_ID = '1009342';
 
   const handleLogout = () => {
     if (onLogout) {
