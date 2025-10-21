@@ -56,6 +56,7 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
 
   const USER_NAME = 'Juan Pérez';
   const USER_ID = '12345678';
+  const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -65,7 +66,7 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
     scrollToBottom();
   }, [messages]);
 
-  const sendMessage = (messageText?: string) => {
+  const sendMessage = async (messageText?: string) => {
     const textToSend = messageText || inputMessage;
     if (!textToSend.trim() || isLoading) return;
 
@@ -80,16 +81,47 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
     setInputMessage('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: USER_ID,
+          userName: USER_NAME,
+          message: textToSend
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+
+      const data = await response.json();
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'bot',
-        content: `He recibido tu mensaje: "${textToSend}". Estoy procesando tu solicitud y te ayudaré en breve.`,
+        content: data.reply || data.response || 'Lo siento, no pude procesar tu solicitud.',
         timestamp: new Date()
       };
+
       setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error al enviar mensaje:', error);
+
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'bot',
+        content: 'Lo siento, hubo un error al procesar tu solicitud. Por favor, intenta nuevamente.',
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleQuickAccess = (action: string) => {
