@@ -23,8 +23,8 @@ interface ChatbotPageProps {
 
 export default function ChatbotPage({ onClose }: ChatbotPageProps) {
   const USER_NAME = 'VeruPérez';
-  const USER_ID = '12345678';
-  const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+  const USER_ID = '1009342';
+  const WEBHOOK_URL = 'https://josueca.app.n8n.cloud/webhook/910ee45e-2165-4b9a-be82-176d92f8aacb';
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
