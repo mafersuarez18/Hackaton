@@ -52,7 +52,7 @@ function App() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE'; // Configurar aquí la URL del Webhook de N8N
-  const USER_ID = '12345678'; // ID del empleado hardcodeado
+  const USER_ID = '12345678'; // ID del empleado
   const USER_NAME = 'Juan Pérez';
 
   const scrollToBottom = () => {
