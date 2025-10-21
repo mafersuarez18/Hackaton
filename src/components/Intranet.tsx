@@ -23,7 +23,7 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
   };
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-orange-500 text-white">
+      <header className="bg-bnc-accent text-white">
         <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center space-x-4">
             <button className="p-2 hover:bg-orange-600 rounded">
@@ -44,7 +44,7 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
             <div className="relative">
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center space-x-3 hover:bg-orange-600 rounded-lg p-2 transition-all"
+                className="flex items-center space-x-3 hover:bg-bnc-accent/90 rounded-lg p-2 transition-all"
               >
                 <p className="text-white font-bold text-lg">{USER_NAME}</p>
                 <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-orange-300 group-hover:ring-4 transition-all">
@@ -53,26 +53,26 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
                 <ChevronDown className={`w-5 h-5 text-white transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {isUserMenuOpen && (
-                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border-2 border-orange-200 overflow-hidden z-50">
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-4">
+                {isUserMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border-2 border-bnc-accent/30 overflow-hidden z-50">
+                  <div className="bg-gradient-to-r from-bnc-blue to-bnc-blue p-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                      <div className="w-12 h-12 bg-gradient-to-br from-bnc-accent to-bnc-accent rounded-full flex items-center justify-center shadow-lg">
                         <User className="w-7 h-7 text-white" />
                       </div>
                       <div>
                         <p className="text-white font-bold text-lg">{USER_NAME}</p>
-                        <p className="text-orange-300 text-sm">ID: {USER_ID}</p>
+                        <p className="text-bnc-orange text-sm">ID: {USER_ID}</p>
                       </div>
                     </div>
                   </div>
                   <div className="p-3 space-y-1">
-                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all">
-                      <Mail className="w-5 h-5 text-orange-500" />
+                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-bnc-accent/10 rounded-lg transition-all">
+                      <Mail className="w-5 h-5 text-bnc-orange" />
                       <span className="font-medium">Mi Correo</span>
                     </button>
-                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all">
-                      <Briefcase className="w-5 h-5 text-blue-600" />
+                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-bnc-accent/10 rounded-lg transition-all">
+                      <Briefcase className="w-5 h-5 text-bnc-blue" />
                       <span className="font-medium">Mi Perfil</span>
                     </button>
                     <button
@@ -159,7 +159,7 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
             Publicado el 21/4/2025
           </div>
 
-          <div className="bg-blue-900 rounded-lg mb-8 h-48 flex items-center justify-center">
+          <div className="bg-bnc-blue rounded-lg mb-8 h-48 flex items-center justify-center">
             <h1 className="text-white text-8xl font-black italic tracking-wider" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>BNC</h1>
           </div>
 
@@ -171,7 +171,7 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
                   alt="Cumpleaños"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 right-3 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                <div className="absolute top-3 right-3 w-10 h-10 bg-bnc-blue rounded-full flex items-center justify-center shadow-lg">
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
                     <path fillRule="evenodd" d="M3 10a7 7 0 1114 0 7 7 0 01-14 0zm7-5a5 5 0 100 10 5 5 0 000-10z" clipRule="evenodd"/>
@@ -190,7 +190,7 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
                   alt="Somos BNC"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 right-3 w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center shadow-lg">
+                <div className="absolute top-3 right-3 w-10 h-10 bg-bnc-blue rounded-full flex items-center justify-center shadow-lg">
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
                   </svg>
@@ -227,7 +227,7 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
                   alt="Gestión Corporativo"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 right-3 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                <div className="absolute top-3 right-3 w-10 h-10 bg-bnc-accent rounded-full flex items-center justify-center shadow-lg">
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
                     <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
@@ -251,9 +251,9 @@ export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
           <img
             src={arhiImg}
             alt="Asistente ARHI"
-            className="w-32 h-32 object-contain drop-shadow-2xl"
+            className="w-45 h-45 object-contain drop-shadow-2xl"
           />
-          <div className="absolute -top-8 right-0 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-orange-500 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute -top-8 right-0 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-bnc-accent opacity-0 group-hover:opacity-100 transition-opacity">
             <span className="text-sm font-bold text-gray-800 whitespace-nowrap">¡Hola, soy ARHI!</span>
           </div>
         </div>

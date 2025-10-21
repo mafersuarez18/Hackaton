@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, User, Bot, MessageSquare, Calendar, CreditCard, ChevronDown, DollarSign, FileCheck, Banknote, ClipboardList, Download, X } from 'lucide-react';
 import arhiImg from '../images/arhi.png';
-import bncLogo from '../images/Banco_Nacional_de_Credito.png'
+import bncLogo from '../images/logo_blanco.png'
 
 interface Message {
   id: string;
@@ -36,6 +36,7 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [chatHistories, _setChatHistories] = useState<ChatHistory[]>([
     {
       id: '1',
@@ -171,8 +172,8 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-orange-50">
-      <header className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 shadow-2xl border-b-4 border-orange-500 sticky top-0 z-40">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-bnc-blue/10 to-bnc-orange/10">
+      <header className="bg-gradient-to-r from-bnc-blue via-bnc-blue to-bnc-blue shadow-2xl border-b-4 border-bnc-orange sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-4">
@@ -182,33 +183,33 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
                   className="w-12 h-12 object-cover rounded"
                 />
               <div>
-                <h1 className="text-3xl font-black text-white tracking-tight">BNC</h1>
-                <p className="text-orange-300 text-sm font-bold">Asistente Virtual</p>
+                <h1 className="text-3xl font-black text-orange-300 tracking-tight">Asistente Virtual</h1>
+                {/* <p className="text-orange-300 text-sm font-bold">Asistente Virtual</p> */}
               </div>
             </div>
 
             <div className="flex items-center space-x-4 relative">
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center space-x-3 hover:bg-blue-800 rounded-lg p-2 transition-all group"
+                className="flex items-center space-x-3 hover:bg-bnc-blue/90 rounded-lg p-2 transition-all group"
               >
                 <p className="text-white font-bold text-lg">{USER_NAME}</p>
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-orange-300 group-hover:ring-4 transition-all">
+                <div className="w-10 h-10 bg-gradient-to-br from-bnc-orange to-bnc-orange rounded-full flex items-center justify-center shadow-lg ring-2 ring-bnc-orange/70 group-hover:ring-4 transition-all">
                   <User className="w-6 h-6 text-white" />
                 </div>
                 <ChevronDown className={`w-5 h-5 text-white transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isUserMenuOpen && (
-                <div className="absolute top-full right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border-2 border-orange-200 overflow-hidden z-50">
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-5">
+                <div className="absolute top-full right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border-2 border-bnc-orange/30 overflow-hidden z-50">
+                  <div className="bg-gradient-to-r from-bnc-blue to-bnc-blue p-5">
                     <div className="flex items-center space-x-3">
-                      <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                      <div className="w-14 h-14 bg-gradient-to-br from-bnc-orange to-bnc-orange rounded-full flex items-center justify-center shadow-lg">
                         <User className="w-7 h-7 text-white" />
                       </div>
                       <div>
                         <p className="text-white font-bold text-lg">{USER_NAME}</p>
-                        <p className="text-orange-300 text-sm">ID: {USER_ID}</p>
+                        <p className="text-bnc-orange text-sm">ID: {USER_ID}</p>
                       </div>
                     </div>
                   </div>
@@ -230,10 +231,10 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className="lg:col-span-1 space-y-6">
-            <div className="bg-white rounded-2xl shadow-xl p-6 border-l-4 border-orange-500 hover:shadow-2xl transition-shadow">
+            <div className="bg-white rounded-2xl shadow-xl p-6 border-l-4 border-bnc-orange hover:shadow-2xl transition-shadow">
               <h2 className="text-lg font-bold text-gray-800 mb-5 flex items-center">
-                <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
-                  <MessageSquare className="w-5 h-5 text-orange-600" />
+                  <div className="w-8 h-8 bg-bnc-orange/10 rounded-lg flex items-center justify-center mr-3">
+                  <MessageSquare className="w-5 h-5 text-bnc-orange" />
                 </div>
                 Accesos Rápidos
               </h2>
@@ -241,36 +242,36 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
                 <li>
                   <button
                     onClick={() => handleQuickAccess('vacaciones')}
-                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-orange-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-bnc-orange/10 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <Calendar className="w-5 h-5 text-orange-500 group-hover:text-orange-600 flex-shrink-0" />
+                    <Calendar className="w-5 h-5 text-bnc-orange group-hover:text-bnc-orange flex-shrink-0" />
                     <span className="font-medium text-sm text-left">Solicitud de Vacaciones</span>
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => handleQuickAccess('adelanto')}
-                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-purple-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-bnc-blue/10 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <DollarSign className="w-5 h-5 text-purple-600 group-hover:text-purple-700 flex-shrink-0" />
+                    <DollarSign className="w-5 h-5 text-bnc-blue group-hover:text-bnc-blue flex-shrink-0" />
                     <span className="font-medium text-sm text-left">Solicitud de Adelanto de Prestaciones</span>
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => handleQuickAccess('constancia')}
-                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-green-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-bnc-green/10 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <FileCheck className="w-5 h-5 text-green-600 group-hover:text-green-700 flex-shrink-0" />
+                    <FileCheck className="w-5 h-5 text-bnc-green group-hover:text-bnc-green flex-shrink-0" />
                     <span className="font-medium text-sm text-left">Constancia de Trabajo</span>
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => handleQuickAccess('prestamo')}
-                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-bnc-blue/10 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <Banknote className="w-5 h-5 text-blue-600 group-hover:text-blue-700 flex-shrink-0" />
+                    <Banknote className="w-5 h-5 text-bnc-blue group-hover:text-bnc-blue flex-shrink-0" />
                     <span className="font-medium text-sm text-left">Solicitud de Préstamos Personales</span>
                   </button>
                 </li>
@@ -316,7 +317,7 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
 
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-200 hover:border-orange-300 transition-all">
-              <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 px-6 py-5 border-b-2 border-orange-500">
+              <div className="bg-gradient-to-r from-bnc-blue via-bnc-blue to-bnc-blue px-6 py-5 border-b-2 border-bnc-orange">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <img
@@ -326,22 +327,22 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
                     />
                     <div>
                       <h2 className="text-xl font-bold text-white">ARHI</h2>
-                      <p className="text-orange-300 text-sm font-medium flex items-center">
-                        <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                      <p className="text-bnc-orange text-sm font-medium flex items-center">
+                        <span className="w-2 h-2 bg-bnc-green rounded-full mr-2 animate-pulse"></span>
                         En línea
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={onClose}
-                    className="text-white hover:bg-blue-800 p-2 rounded-lg transition-all"
+                    className="text-white hover:bg-bnc-blue p-2 rounded-lg transition-all"
                   >
                     <X className="w-6 h-6" />
                   </button>
                 </div>
               </div>
 
-              <div className="h-[500px] overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-blue-50">
+              <div className="h-[500px] overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-bnc-blue/10">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -418,11 +419,11 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
           </div>
 
           <div className="lg:col-span-1 space-y-6">
-            <div className="bg-white rounded-2xl shadow-xl p-6 border-r-4 border-blue-900 hover:shadow-2xl transition-shadow">
+            <div className="bg-white rounded-2xl shadow-xl p-6 border-r-4 border-bnc-blue hover:shadow-2xl transition-shadow">
               <div className="flex items-center justify-between mb-5">
                 <h2 className="text-lg font-bold text-gray-800 flex items-center">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <MessageSquare className="w-5 h-5 text-blue-600" />
+                  <div className="w-8 h-8 bg-bnc-blue/10 rounded-lg flex items-center justify-center mr-3">
+                    <MessageSquare className="w-5 h-5 text-bnc-blue" />
                   </div>
                   Historial
                 </h2>
@@ -440,7 +441,7 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
                     onClick={() => loadChatHistory(chat.id)}
                     className={`w-full text-left p-3 rounded-xl transition-all hover:shadow-md ${
                       currentChatId === chat.id
-                        ? 'bg-blue-100 border-2 border-blue-600'
+                        ? 'bg-bnc-blue/10 border-2 border-bnc-blue'
                         : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
                     }`}
                   >
