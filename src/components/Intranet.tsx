@@ -1,10 +1,26 @@
-import { Settings, HelpCircle, Star, Share2, Search, Menu } from 'lucide-react';
+import { Settings, HelpCircle, Star, Share2, Search, Menu, User, ChevronDown, Mail, Briefcase, LogOut } from 'lucide-react';
+import { useState } from 'react';
+import arhiImg from '../images/arhi.png';
+import bncLogo from '../images/Banco_Nacional_de_Credito.png';
 
 interface IntranetProps {
   onOpenChatbot: () => void;
+  onLogout?: () => void;
 }
 
-export default function Intranet({ onOpenChatbot }: IntranetProps) {
+export default function Intranet({ onOpenChatbot, onLogout }: IntranetProps) {
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const USER_NAME = 'Juan Pérez';
+  const USER_ID = '12345678';
+
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout();
+    } else {
+      // demo behavior: redirect to root (adjust as needed)
+      window.location.href = '/';
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-orange-500 text-white">
@@ -17,13 +33,59 @@ export default function Intranet({ onOpenChatbot }: IntranetProps) {
               <span className="text-2xl font-bold">SharePoint</span>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 relative">
             <button className="p-2 hover:bg-orange-600 rounded">
               <Settings className="w-5 h-5" />
             </button>
             <button className="p-2 hover:bg-orange-600 rounded">
               <HelpCircle className="w-5 h-5" />
             </button>
+
+            <div className="relative">
+              <button
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                className="flex items-center space-x-3 hover:bg-orange-600 rounded-lg p-2 transition-all"
+              >
+                <p className="text-white font-bold text-lg">{USER_NAME}</p>
+                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-orange-300 group-hover:ring-4 transition-all">
+                  <User className="w-6 h-6 text-white" />
+                </div>
+                <ChevronDown className={`w-5 h-5 text-white transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isUserMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border-2 border-orange-200 overflow-hidden z-50">
+                  <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                        <User className="w-7 h-7 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white font-bold text-lg">{USER_NAME}</p>
+                        <p className="text-orange-300 text-sm">ID: {USER_ID}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3 space-y-1">
+                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all">
+                      <Mail className="w-5 h-5 text-orange-500" />
+                      <span className="font-medium">Mi Correo</span>
+                    </button>
+                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all">
+                      <Briefcase className="w-5 h-5 text-blue-600" />
+                      <span className="font-medium">Mi Perfil</span>
+                    </button>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-red-50 rounded-lg transition-all"
+                    >
+                      <LogOut className="w-5 h-5 text-red-600" />
+                      <span className="font-medium text-red-600">Cerrar Sesión</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -34,7 +96,7 @@ export default function Intranet({ onOpenChatbot }: IntranetProps) {
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
                 <img
-                  src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=100"
+                  src={bncLogo}
                   alt="BNC Logo"
                   className="w-12 h-12 object-cover rounded"
                 />
@@ -187,12 +249,12 @@ export default function Intranet({ onOpenChatbot }: IntranetProps) {
       >
         <div className="relative">
           <img
-            src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&w=200"
-            alt="Asistente Virtual"
+            src={arhiImg}
+            alt="Asistente ARHI"
             className="w-32 h-32 object-contain drop-shadow-2xl"
           />
           <div className="absolute -top-8 right-0 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-orange-500 opacity-0 group-hover:opacity-100 transition-opacity">
-            <span className="text-sm font-bold text-gray-800 whitespace-nowrap">¡Hola, soy Abrill!</span>
+            <span className="text-sm font-bold text-gray-800 whitespace-nowrap">¡Hola, soy ARHI!</span>
           </div>
         </div>
       </button>

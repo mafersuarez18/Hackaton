@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, User, Bot, LogOut, MessageSquare, Calendar, FileText, CreditCard, Clock, ChevronDown, Mail, Briefcase, Building2, DollarSign, FileCheck, Banknote, ClipboardList, Download, X } from 'lucide-react';
+import { Send, User, Bot, MessageSquare, Calendar, CreditCard, ChevronDown, DollarSign, FileCheck, Banknote, ClipboardList, Download, X } from 'lucide-react';
+import arhiImg from '../images/arhi.png';
+import bncLogo from '../images/Banco_Nacional_de_Credito.png'
 
 interface Message {
   id: string;
@@ -24,13 +26,13 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
     {
       id: '1',
       type: 'bot',
-      content: 'Hola Juan, soy tu asistente virtual del BNC. ¿En qué puedo ayudarte hoy?',
+      content: 'Hola Juan, soy ARHI, tu asistente virtual del BNC. ¿En qué puedo ayudarte hoy?',
       timestamp: new Date()
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [chatHistories, setChatHistories] = useState<ChatHistory[]>([
+  const [chatHistories, _setChatHistories] = useState<ChatHistory[]>([
     {
       id: '1',
       title: 'Consulta de vacaciones',
@@ -139,9 +141,11 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform ring-4 ring-orange-300">
-                <Building2 className="w-8 h-8 text-white" />
-              </div>
+              <img
+                  src={bncLogo}
+                  alt="BNC Logo"
+                  className="w-12 h-12 object-cover rounded"
+                />
               <div>
                 <h1 className="text-3xl font-black text-white tracking-tight">BNC</h1>
                 <p className="text-orange-300 text-sm font-bold">Asistente Virtual</p>
@@ -173,21 +177,12 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
                       </div>
                     </div>
                   </div>
-                  <div className="p-3 space-y-1">
-                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all group">
-                      <Mail className="w-5 h-5 text-orange-500 group-hover:scale-110 transition-transform" />
-                      <span className="font-medium">Mi Correo</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all group">
-                      <Briefcase className="w-5 h-5 text-blue-600 group-hover:scale-110 transition-transform" />
-                      <span className="font-medium">Mi Perfil</span>
-                    </button>
+                  <div className="p-3">
                     <button
                       onClick={onClose}
-                      className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-red-50 rounded-lg transition-all group"
+                      className="w-full flex items-center justify-center px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-lg transition-all"
                     >
-                      <LogOut className="w-5 h-5 text-red-600 group-hover:scale-110 transition-transform" />
-                      <span className="font-medium text-red-600">Cerrar Sesión</span>
+                      <span className="font-medium">Volver a intranet</span>
                     </button>
                   </div>
                 </div>
@@ -289,11 +284,13 @@ export default function ChatbotPage({ onClose }: ChatbotPageProps) {
               <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 px-6 py-5 border-b-2 border-orange-500">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-orange-300 animate-pulse">
-                      <Bot className="w-7 h-7 text-white" />
-                    </div>
+                    <img
+                      src={arhiImg}
+                      alt="Asistente ARHI"
+                      className="w-12 h-12   object-contain drop-shadow-2xl"
+                    />
                     <div>
-                      <h2 className="text-xl font-bold text-white">Asistente Virtual BNC</h2>
+                      <h2 className="text-xl font-bold text-white">ARHI</h2>
                       <p className="text-orange-300 text-sm font-medium flex items-center">
                         <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
                         En línea
