@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, User, Bot, LogOut, MessageSquare, Calendar, FileText, CreditCard, Clock, ChevronDown, Mail, Briefcase, Building2 } from 'lucide-react';
+import { Send, User, Bot, LogOut, MessageSquare, Calendar, FileText, CreditCard, Clock, ChevronDown, Mail, Briefcase, Building2, DollarSign, FileCheck, Banknote, ClipboardList, Download } from 'lucide-react';
 import logoBNC from './images/Banco_Nacional_de_Credito.png';
 
 interface Message {
@@ -131,9 +131,12 @@ function App() {
   const handleQuickAccess = (action: string) => {
     const messages: { [key: string]: string } = {
       'vacaciones': 'Quiero solicitar vacaciones',
-      'permisos': 'Necesito solicitar un permiso',
-      'certificados': 'Requiero un certificado laboral',
-      'nomina': 'Deseo consultar mis desprendibles de nómina'
+      'adelanto': 'Necesito solicitar un adelanto de prestaciones',
+      'constancia': 'Requiero una constancia de trabajo',
+      'prestamo': 'Quiero solicitar un préstamo personal',
+      'permiso-reposo': 'Necesito solicitar un permiso y/o reposo',
+      'ari': 'Quiero descargar mi AR-I',
+      'arc': 'Quiero descargar mi ARC'
     };
     sendMessage(messages[action]);
   };
@@ -187,14 +190,11 @@ function App() {
             </div>
 
             <div className="flex items-center space-x-4 relative">
-              <div className="text-right">
-                <p className="text-white font-semibold">{USER_NAME}</p>
-                <p className="text-orange-300 text-sm font-medium">ID: {USER_ID}</p>
-              </div>
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center space-x-2 hover:bg-blue-800 rounded-lg p-2 transition-all group"
+                className="flex items-center space-x-3 hover:bg-blue-800 rounded-lg p-2 transition-all group"
               >
+                <p className="text-white font-bold text-lg">{USER_NAME}</p>
                 <div className="w-11 h-11 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white ring-opacity-50 group-hover:ring-orange-300 transition-all">
                   <User className="w-6 h-6 text-white" />
                 </div>
@@ -269,7 +269,7 @@ function App() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar Panel */}
+          {/* Sidebar Panel Izquierdo */}
           <div className="lg:col-span-1 space-y-6">
             {/* Accesos Rápidos */}
             <div className="bg-white rounded-2xl shadow-xl p-6 border-l-4 border-orange-500 hover:shadow-2xl transition-shadow">
@@ -285,79 +285,70 @@ function App() {
                     onClick={() => handleQuickAccess('vacaciones')}
                     className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-orange-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <Calendar className="w-5 h-5 text-orange-500 group-hover:text-orange-600" />
-                    <span className="font-medium">Solicitud de Vacaciones</span>
+                    <Calendar className="w-5 h-5 text-orange-500 group-hover:text-orange-600 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Solicitud de Vacaciones</span>
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => handleQuickAccess('permisos')}
-                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                    onClick={() => handleQuickAccess('adelanto')}
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-purple-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <Clock className="w-5 h-5 text-blue-600 group-hover:text-blue-700" />
-                    <span className="font-medium">Mis Permisos</span>
+                    <DollarSign className="w-5 h-5 text-purple-600 group-hover:text-purple-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Solicitud de Adelanto de Prestaciones</span>
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => handleQuickAccess('certificados')}
-                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                    onClick={() => handleQuickAccess('constancia')}
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-green-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <FileText className="w-5 h-5 text-blue-600 group-hover:text-blue-700" />
-                    <span className="font-medium">Certificados Laborales</span>
+                    <FileCheck className="w-5 h-5 text-green-600 group-hover:text-green-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Constancia de Trabajo</span>
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => handleQuickAccess('nomina')}
+                    onClick={() => handleQuickAccess('prestamo')}
                     className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
                   >
-                    <CreditCard className="w-5 h-5 text-blue-600 group-hover:text-blue-700" />
-                    <span className="font-medium">Desprendibles de Nómina</span>
+                    <Banknote className="w-5 h-5 text-blue-600 group-hover:text-blue-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Solicitud de Préstamos Personales</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleQuickAccess('permiso-reposo')}
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-yellow-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                  >
+                    <ClipboardList className="w-5 h-5 text-yellow-600 group-hover:text-yellow-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Solicitud Permiso y/o Reposo</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleQuickAccess('ari')}
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-cyan-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                  >
+                    <Download className="w-5 h-5 text-cyan-600 group-hover:text-cyan-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Descargar AR-I</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleQuickAccess('arc')}
+                    className="w-full flex items-center space-x-3 p-3 text-gray-700 hover:bg-teal-50 rounded-xl cursor-pointer transition-all hover:scale-105 hover:shadow-md group"
+                  >
+                    <Download className="w-5 h-5 text-teal-600 group-hover:text-teal-700 flex-shrink-0" />
+                    <span className="font-medium text-sm text-left">Descargar ARC</span>
                   </button>
                 </li>
               </ul>
             </div>
-
-            {/* Historial de Conversaciones */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 border-l-4 border-blue-900 hover:shadow-2xl transition-shadow">
-              <div className="flex items-center justify-between mb-5">
-                <h2 className="text-lg font-bold text-gray-800 flex items-center">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <MessageSquare className="w-5 h-5 text-blue-600" />
-                  </div>
-                  Historial
-                </h2>
-                <button
-                  onClick={startNewChat}
-                  className="text-xs bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg transition-colors font-medium"
-                >
-                  Nuevo
-                </button>
-              </div>
-              <div className="space-y-2 max-h-96 overflow-y-auto">
-                {chatHistories.map((chat) => (
-                  <button
-                    key={chat.id}
-                    onClick={() => loadChatHistory(chat.id)}
-                    className={`w-full text-left p-3 rounded-xl transition-all hover:shadow-md ${
-                      currentChatId === chat.id
-                        ? 'bg-blue-100 border-2 border-blue-600'
-                        : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
-                    }`}
-                  >
-                    <p className="font-medium text-sm text-gray-800 truncate">{chat.title}</p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {chat.date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}
-                    </p>
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Chat Widget */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-200 hover:border-orange-300 transition-all">
               {/* Chat Header */}
               <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 px-6 py-5 border-b-2 border-orange-500">
@@ -456,6 +447,45 @@ function App() {
                     <span className="font-bold">Enviar</span>
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar Panel Derecho - Historial */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Historial de Conversaciones */}
+            <div className="bg-white rounded-2xl shadow-xl p-6 border-r-4 border-blue-900 hover:shadow-2xl transition-shadow">
+              <div className="flex items-center justify-between mb-5">
+                <h2 className="text-lg font-bold text-gray-800 flex items-center">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                    <MessageSquare className="w-5 h-5 text-blue-600" />
+                  </div>
+                  Historial
+                </h2>
+                <button
+                  onClick={startNewChat}
+                  className="text-xs bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg transition-colors font-medium"
+                >
+                  Nuevo
+                </button>
+              </div>
+              <div className="space-y-2 max-h-96 overflow-y-auto">
+                {chatHistories.map((chat) => (
+                  <button
+                    key={chat.id}
+                    onClick={() => loadChatHistory(chat.id)}
+                    className={`w-full text-left p-3 rounded-xl transition-all hover:shadow-md ${
+                      currentChatId === chat.id
+                        ? 'bg-blue-100 border-2 border-blue-600'
+                        : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
+                    }`}
+                  >
+                    <p className="font-medium text-sm text-gray-800 truncate">{chat.title}</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {chat.date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}
+                    </p>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
